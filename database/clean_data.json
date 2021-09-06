@@ -1,0 +1,134 @@
+{
+    "normal": {
+        " creme ": [
+            "cream"
+        ],
+        " frech ": [
+            "frsh",
+            "fresh"
+        ],
+        " tripla ": [
+            "tripla",
+            "triple"
+        ],
+        " campu ": [
+            "campo"
+        ],
+        " colgate tripla acao ": [
+            "cta"
+        ],
+        " total ": [
+            "t."
+        ],
+        " limpador ": [
+            "limp "
+        ]
+    },
+    "categoria": {
+        " creme pentear ": [
+            "cr pent",
+            "creme pentear"
+        ],
+        " baby ": [
+            "bebe"
+        ],
+        " condicionador ": [
+            "condicionador",
+            "cond"
+        ],
+        " escova dental ": [
+            "escova de dente",
+            "escova dental",
+            "escova",
+            "esc dental",
+            "esc dent",
+            "esc den",
+            "escden"
+        ],
+        " creme dental ": [
+            "pasta de dente",
+            "creme dental",
+            "crem dent",
+            "creme den",
+            "cd"
+        ],
+        " multiuso ": [
+            "multiuso",
+            "mult"
+        ],
+        " maos ": [
+            "maos"
+        ],
+        " desinfetante ": [
+            "desinfetante",
+            "disinfetante",
+            "disinf",
+            "desinf"
+        ],
+        " enxaguante ": [
+            "enxaguante bucal",
+            "enxaguante",
+            "enx bucal",
+            "enx buc",
+            "enx"
+        ],
+        " shampum ": [
+            "shampoo",
+            "xampu",
+            "sh"
+        ],
+        " fio fita ": [
+            "fio dental",
+            "fio e fita"
+        ],
+        " intimo ": [
+            "intimo"
+        ],
+        " sadonete liquido ": [
+            "sabonete liquido",
+            "sab liq"
+        ],
+        " barra ": [
+            "barra",
+            "sab ",
+            "bs "
+        ],
+        " limpador perfumado ": [
+            "limpador perfumado",
+            "fdf"
+        ]
+    },
+    "marca": {
+        " colgate ": [
+            "colgate",
+            "colg ",
+            "col ",
+            "clgte "
+        ],
+        " darling ": [
+            "darling "
+        ],
+        " ola ": [
+            "ola "
+        ],
+        " palmolive ": [
+            "palmolive",
+            "po"
+        ],
+        " pinho_sol ": [
+            "p sol",
+            "pinho sol"
+        ],
+        " protex ": [
+            "protex"
+        ],
+        " sorriso ": [
+            "sorriso",
+            "sor ",
+            "sor"
+        ],
+        " tandy ": [
+            "tandy"
+        ]
+    }
+}
