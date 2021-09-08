@@ -1,7 +1,147 @@
 {
     "normal": {
+        " puder ": [
+            "xpoder",
+            "poder"
+        ],
+        " bouquet": [
+            "bouquet",
+            "bouqet"
+        ],
+        " care ": [
+            "care"
+        ],
+        " equilibrio ":[
+            "equilibrio",
+            "equilibrium",
+            "equilib"
+        ],
+        " flores ":[
+            "flores"
+        ],
+        " classico ": [
+            "classico",
+            "classic"
+        ],
+        " vitamina ": [
+            "vitamina",
+            "vitam"
+        ],
+        " refil ":[
+            "refill",
+            "refil",
+            "ref"
+        ],
+        " protecao ": [
+            "protecao",
+            "protect",
+            "protec"
+        ],
+        " prolongada ":[
+            "prolongada",
+            "prolonga"
+        ],
+        " pretos ": [
+            "pretos",
+            "preto"
+        ],
+        " perfumado ": [
+            "perfumado",
+            "perfuma"
+        ],
+        " pentear ": [
+            "pentear",
+            "pentar"
+        ],
+        " original ": [
+            "original",
+            "orig"
+        ],
+        " natural ": [
+            "naturals",
+            "natural",
+            "nat"
+        ],
+        " menta ": [
+            "menta",
+            "mint"
+        ],
+        " media ": [
+            "media",
+            "med"
+        ],
+        " macia ": [
+            "macia",
+            "maciez"
+        ],
+        " maca ": [
+            "maca",
+            "mac"
+        ],
+        " longa ": [
+            "longa",
+            "long"
+        ],
+        " livres ": [
+            "livres",
+            "liv"
+        ],
+        " limao ": [
+            "limao",
+            "lemon"
+        ],
+        " lavanda ": [
+            "lavanda",
+            "lavender",
+            "lvnd"
+        ],
+        " jasmim ": [
+            "jasmim",
+            "jasmin"
+        ],
+        " essencial ": [
+            "essencial",
+            "essential"
+        ],
+        " eucalipto ": [
+            "eucalipto",
+            "eucalip"
+        ],
+        " cachos ": [
+            "cachos",
+            "cacho",
+            "cach"
+        ],
+        " cabo ": [
+            "cab "
+        ],
+        " delicado ": [
+            "delicada",
+            "delicate",
+            "delicad",
+            "delica",
+            "delic",
+            "deli"
+        ],
+        " esfoliacao ": [
+            "esfolicacao",
+            "esfoli"
+        ],
+        " whitening ": [
+            "whtng",
+            "whitening"
+        ],
+        " hidratacao ": [
+            "hidratacao",
+            "hidrataç",
+            "hidrata",
+            "hidrat"
+        ],
+        " tripla limpeza ": [
+            "tripla limp "
+        ],
         " creme ": [
-            "cream"
+            "cream "
         ],
         " frech ": [
             "frsh",
@@ -15,10 +155,12 @@
             "campo"
         ],
         " colgate tripla acao ": [
-            "cta"
+            " cta"
         ],
         " total ": [
-            "t."
+            "t.",
+            "total",
+            "tot"
         ],
         " limpador ": [
             "limp "
@@ -30,7 +172,9 @@
             "creme pentear"
         ],
         " baby ": [
-            "bebe"
+            "bebe",
+            "baby",
+            "bab"
         ],
         " condicionador ": [
             "condicionador",
@@ -84,11 +228,12 @@
         " intimo ": [
             "intimo"
         ],
-        " sadonete liquido ": [
-            "sabonete liquido",
-            "sab liq"
+        " liquido ": [
+            "liquido",
+            "liq"
         ],
-        " barra ": [
+        " sabonete ": [
+            "sabonete",
             "barra",
             "sab ",
             "bs "
@@ -109,7 +254,7 @@
             "darling "
         ],
         " ola ": [
-            "ola "
+            " ola "
         ],
         " palmolive ": [
             "palmolive",

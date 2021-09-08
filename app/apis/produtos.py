@@ -6,18 +6,11 @@ def get():
     """
     Método GET do servidor dos produtos
     """
-
-    return {"texto": "Produto GET"}
-
-
-def post():
-    """
-    Método POST do servidor dos produtos
-    """
-
     #pega a tabela e cria uma copia normalizada
     wanted_data = dt.get_sql(f"SELECT * FROM PRODUCTS")
     response = dt.dataframe_normalization(wanted_data.copy())
+
+    response = autc.table_correction(response)
     
     #cria a bolsa de palavras para correção de erros de digitação
     autc.bag_of_words(response)
@@ -41,8 +34,6 @@ def post():
 
         except: pass
 
-    response = autc.table_correction(response)
-
     print(filters)
 
     #if not response.empty:
@@ -62,7 +53,7 @@ def post():
         elif "desc" in key:
     
             for value in filters['desc'].split():
-                wanted_data = wanted_data.loc[response[key].str.contains(f"{value}")]
+                wanted_data = wanted_data.loc[response[key].str.contains(value)]
 
 
     wanted_data["EAN"] = wanted_data["EAN"].astype(str)
@@ -71,3 +62,11 @@ def post():
         return {"lista": "No data to return"}, 204
 
     return {"lista": wanted_data.to_dict("records")}, 200
+
+
+def post():
+    """
+    Método POST do servidor dos produtos
+    """
+
+    return {"texto": "Produto POST"}

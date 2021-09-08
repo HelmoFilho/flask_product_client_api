@@ -20,10 +20,11 @@ def bag_of_words(data: pd.DataFrame):
 
     full_data = list(set(data_copy["categoria"].values + " " +
                 data_copy["marca"].values + " " +
-                data_copy["sub marca"].values))
+                data_copy["sub marca grama"].values + " " + 
+                data_copy["desc"].values))
 
     #cria uma 'bag of words' utilizando o padrão
-    vectorizer = CountVectorizer(analyzer='word', token_pattern=r"(?u)\b[a-z]{3,}\b")
+    vectorizer = CountVectorizer(analyzer='word', token_pattern = r"[a-z]{3,}")
     vectorizer.fit_transform(full_data)
 
     #Proposito único de criar o arquivo caso ele não exista
@@ -79,7 +80,7 @@ def correct(to_correct: str) -> str:
                     suggestions.append(suggestion)
 
             #checa das palavras separadas qual a mais parecida com a requerida
-            f_suggestion = dl.get_close_matches(word, suggestions)
+            f_suggestion = dl.get_close_matches(word, suggestions, cutoff = 0.75)
 
             #se tiver salva na bolsa
             if f_suggestion:
@@ -142,7 +143,12 @@ def table_correction(data: pd.DataFrame) -> pd.DataFrame:
     wanted_data = data["desc"].to_list()
 
     for position in range(len(wanted_data)):
-    
+
+        #Serve para corrigir essa linha: "Sab Liq PROTEX INTIMO FRESH EQUILIB200ML"
+        try:
+            wanted_data[position] = re.sub("\\d+m", " " + re.findall(r'\d+', wanted_data[position])[0], wanted_data[position])
+        except: pass
+
         for master_key in substitute.keys():
             
             for key in substitute[master_key]:

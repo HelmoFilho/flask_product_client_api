@@ -1,0 +1,4 @@
+no json "clean_data", existem 'correções' escritas erradas deliberadamente para 
+não haver correções posteriores por outros pontos.
+
+ex: 'shampoo' -> 'shampum' para não haver problema com 'po' -> 'palmolive'
