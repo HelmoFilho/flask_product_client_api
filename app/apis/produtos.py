@@ -1,5 +1,6 @@
 from flask import request
 import functions.data_treatment as dt
+import functions.sql_management as sqlm
 import functions.autocorrection as autc
 
 def get():
@@ -7,7 +8,7 @@ def get():
     Método GET do servidor dos produtos
     """
     #pega a tabela e cria uma copia normalizada
-    wanted_data = dt.get_sql(f"SELECT * FROM PRODUCTS")
+    wanted_data = sqlm.get_sql(f"SELECT * FROM PRODUCTS")
     response = dt.dataframe_normalization(wanted_data.copy())
 
     response = autc.table_correction(response)

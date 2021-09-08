@@ -1,8 +1,8 @@
 from app.server import app
-import functions.data_treatment as dt
+import functions.sql_management as sqlm
 
 def main():
-    dt.create_sqlite()
+    sqlm.create_sqlite()
     app.run()
     
 

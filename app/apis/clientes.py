@@ -1,5 +1,6 @@
-import functions.data_treatment as dt
 from flask import request
+import functions.data_treatment as dt
+import functions.sql_management as sqlm
 
 def get():
     """
@@ -55,7 +56,7 @@ def get():
         condition = condition.rsplit(' ', 1)[0]
 
     #realiza a query com relação as condições formadas
-    response = dt.get_sql(f"SELECT * FROM CLIENTS {condition}")
+    response = sqlm.get_sql(f"SELECT * FROM CLIENTS {condition}")
 
     if response.empty:
         return {"error": "No response"}, 204

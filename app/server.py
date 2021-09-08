@@ -2,7 +2,6 @@ from flask import Flask
 from flask_restful import Api, Resource
 from app.apis import clientes
 from app.apis import produtos
-import functions.data_treatment as dt
 
 app = Flask(__name__)
 api = Api(app)
