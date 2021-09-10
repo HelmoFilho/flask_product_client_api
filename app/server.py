@@ -20,6 +20,9 @@ class Clientes(Resource):
     def post(self):
         return clientes.post()
 
+    def delete(self):
+        return clientes.delete()
+
 
 class Produtos(Resource):
 

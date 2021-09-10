@@ -1,7 +1,6 @@
-import sqlite3
 import pandas as pd
 from unidecode import unidecode
-import os.path
+
 
 def get_dataframe(url: str, spreadsheet: list[str] = 0, columns_wanted: list = []) -> pd.DataFrame:
     """Pega um arquivo excel e o transforma em um dataframe
