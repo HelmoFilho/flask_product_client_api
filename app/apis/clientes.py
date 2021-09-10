@@ -173,7 +173,21 @@ def post():
 
 
 def put():
-    pass
+
+    columns = list((sqlm.get_sql("SELECT * FROM CLIENTS LIMIT 5")).columns)
+    normalized_columns = [unidecode(column.lower())   for column in columns]
+    columns = dict(zip(normalized_columns, columns))
+
+    filters = dict(request.get_json())
+    normalized_filters = dt.dict_normalization(filters)
+
+    if "cod cliente" not in normalized_filters:
+        return {"Status": "Código do Cliente necessário"}
+
+
+
+    return {"Status": "Cliente PUT"}
+
 
 def delete():
     
@@ -185,7 +199,10 @@ def delete():
     normalized_filters = dt.dict_normalization(filters)
 
     if "cod cliente" not in normalized_filters:
-        return {"Status": "Código do Cliente necessário"}
+        return {"Erro": "Código do Cliente necessário"}
+
+    if sqlm.get_sql(f'SELECT * FROM CLIENTS WHERE "Cód Cliente" = {filters["Cód Cliente"]}').empty:
+        return {"Erro": "Cliente não existe"}
 
     query = f"""DELETE FROM CLIENTS WHERE "{columns["cod cliente"]}" = {filters[columns["cod cliente"]]}"""
     
