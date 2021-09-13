@@ -3,8 +3,22 @@ não haver correções posteriores por outros pontos.
 
 ex: 'shampoo' -> 'shampum' para não haver problema com 'po' -> 'palmolive'
 
+teste clientes
+{
+    "Concatenar": null,
+    "Cód Cliente": 9999999999999,
+    "CIDADE": "CE",
+    "Estado": "FORTALEZA",
+    "Valor": 35353535355,
+    "Faixas": "Faixa 15",
+    "Perfil": "Atac Ind",
+    "Area Nielsen": "Area I",
+    "TIPO": "CNPJ",
+    "CHECK": "PDV EXISTENTE",
+    "Faixa do Sortimento": "Faixa 15"
+}
 
-
+teste produtos
 {
     "REGIÃO": "NE",
     "EAN": "8888888888888",

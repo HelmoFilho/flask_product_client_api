@@ -64,7 +64,7 @@ def get():
     wanted_data["EAN"] = wanted_data["EAN"].astype(str)
     
     if wanted_data.empty:
-        return {"Erro": "Dados não encontrados"}, 204
+        return {"Erro": "Dados não encontrados"}, 200
 
     return {"Data": wanted_data.to_dict("records")}, 200
 
