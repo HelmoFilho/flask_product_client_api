@@ -1,4 +1,5 @@
 import sqlite3
+import numpy as np
 
 # path = "database\database.db"
 
@@ -39,9 +40,4 @@ data = (None, 9999999999999999, "CE", "FORTALEZA", 99999999.99, "Faixa 8", "CEFO
 
 
 if __name__ == "__main__":
-    x = 0
-
-    if x:
-        print(True)
-    else:
-        print(False)
+    print(np.round(0.6, 1))

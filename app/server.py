@@ -35,6 +35,12 @@ class Produtos(Resource):
     def post(self):
         return produtos.post()
 
+    def put(self):
+        return produtos.put()
+
+    def delete(self):
+        return produtos.delete()
+
 
 api.add_resource(HomePage, "/")
 api.add_resource(Clientes, "/clientes")

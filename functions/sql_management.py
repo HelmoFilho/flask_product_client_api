@@ -1,8 +1,9 @@
 import sqlite3
 import pandas as pd
 import os.path
-import functions.data_treatment as dt
 import numpy as np
+
+import functions.data_treatment as dt
 
 def create_sqlite():
     """

@@ -170,7 +170,7 @@ def post():
     filters = {columns[key]: filters[filter_keys[key]]   for key in normalized_columns}
 
     # Verifica se o dado já existe
-    if not sqlm.get_sql(f'SELECT * FROM CLIENTS WHERE "Cód Cliente" = {filters["Cód Cliente"]}').empty:
+    if not sqlm.get_sql(f'SELECT * FROM CLIENTS WHERE "Cód Cliente" = {filters[filter_keys["cod cliente"]]}').empty:
         return {"Erro": "Cliente já existe"}
     
     sqlm.sql_post("CLIENTS", *filters.values())
@@ -202,7 +202,7 @@ def put():
     if "cod cliente" not in normalized_keys:
         return {"Status": "Código do Cliente necessário"}
 
-    return_data = sqlm.get_sql(f'SELECT * FROM CLIENTS WHERE "Cód Cliente" = {filters["Cód Cliente"]}')
+    return_data = sqlm.get_sql(f'SELECT * FROM CLIENTS WHERE "Cód Cliente" = {filters[keys["cod cliente"]]}')
 
     # Checa se o dado existe
     if return_data.empty:
@@ -216,6 +216,15 @@ def put():
 
     if invalid_keys:
         return {"Erro - Chaves invalidas": invalid_keys}
+
+    # Verifica se as chaves obrigatórias receberam valor nulo ou vazio
+    invalid_values = []
+    for key, value in zip(keys, filters.values()):
+        if (value == None or value == "") and key in unnecessary_keys_normalized:
+            invalid_values.append(key)
+    
+    if invalid_values:
+        return {"Erro - Valores invalidos": invalid_values}
 
     # Verifica se os valores estão no tipo correto
     incorrect_values = []
@@ -294,20 +303,24 @@ def delete():
     normalized_columns = [unidecode(column.lower())   for column in columns]
     columns = dict(zip(normalized_columns, columns))
 
-    # Pega o request e cria uma lista com os nomes das chaves normalizado
+    # Pega o request
     filters = dict(request.get_json())
-    normalized_filters = dt.dict_normalization(filters)
+    
+    # Cria um dicionário com o nome das chaves como valor e as chaves normalizadas como chave
+    keys = list(filters.keys())
+    normalized_keys = [unidecode(key.lower())   for key in filters.keys()]
+    keys = {key: value  for key, value in zip(normalized_keys, keys)}
 
     # Checa se o código do cliente foi fornecido
-    if "cod cliente" not in normalized_filters:
+    if "cod cliente" not in normalized_keys:
         return {"Erro": "Código do Cliente necessário"}
 
     # Checa se o cliente existe
-    if sqlm.get_sql(f'SELECT * FROM CLIENTS WHERE "Cód Cliente" = {filters["Cód Cliente"]}').empty:
+    if sqlm.get_sql(f'SELECT * FROM CLIENTS WHERE "Cód Cliente" = {filters[keys["cod cliente"]]}').empty:
         return {"Erro": "Cliente não existe"}
 
     # Cria a string completa para realizar a query de delete
-    query = f"""DELETE FROM CLIENTS WHERE "{columns["cod cliente"]}" = {filters[columns["cod cliente"]]}"""
+    query = f"""DELETE FROM CLIENTS WHERE "{columns["cod cliente"]}" = {filters[keys["cod cliente"]]}"""
     
     # Realiza o delete
     conn = sqlite3.connect("database\database.db")

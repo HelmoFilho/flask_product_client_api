@@ -2,3 +2,17 @@ no json "clean_data", existem 'correções' escritas erradas deliberadamente par
 não haver correções posteriores por outros pontos.
 
 ex: 'shampoo' -> 'shampum' para não haver problema com 'po' -> 'palmolive'
+
+
+
+{
+    "REGIÃO": "NE",
+    "EAN": "8888888888888",
+    "SKUs PUSH & PULL - EB2B": "PUSH",
+    "CATEGORIA": "REFRIGERANTE",
+    "MARCA": "COCA-COLA",
+    "SUB MARCA": "COCA-COLA",
+    "SUB MARCA GRAMA": "COCA-COLA 2L",
+    "DESC": "REFRIGERANTE DE COLA COCA-COLA 2L",
+    "FAIXA 06": 3
+}

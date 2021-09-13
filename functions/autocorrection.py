@@ -24,7 +24,7 @@ def bag_of_words(data: pd.DataFrame):
                 data_copy["desc"].values))
 
     #cria uma 'bag of words' utilizando o padrão
-    vectorizer = CountVectorizer(analyzer='word', token_pattern = r"[a-z]{3,}")
+    vectorizer = CountVectorizer(analyzer='word', token_pattern = r"[a-z\-]{3,}")
     vectorizer.fit_transform(full_data)
 
     #Proposito único de criar o arquivo caso ele não exista
