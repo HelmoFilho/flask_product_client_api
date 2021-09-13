@@ -39,7 +39,9 @@ data = (None, 9999999999999999, "CE", "FORTALEZA", 99999999.99, "Faixa 8", "CEFO
 
 
 if __name__ == "__main__":
-    x = None
+    x = 0
 
-    if "" == None:
+    if x:
         print(True)
+    else:
+        print(False)
