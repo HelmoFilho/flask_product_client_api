@@ -39,7 +39,7 @@ def get():
 
         except: pass
 
-    #print(filters)
+    print(filters)
 
     #if not response.empty:
     #    return {"lista": response.to_dict("records")}, 200
@@ -235,10 +235,11 @@ def put():
                 incorrect_values.append(columns[key])
 
         if "faixa" in key:
-            try: 
-                float(str(value))
-            except: 
-                incorrect_values.append(columns[key])
+            if value != None: 
+                try:
+                    float(str(value))
+                except: 
+                    incorrect_values.append(columns[key])
 
         #para todos os outros
         else:
@@ -248,23 +249,19 @@ def put():
     if incorrect_values:
         return {"Erro - Valores de tipo incorreto": incorrect_values}
 
-    # Realiza correções em certas chaves
+    # Realiza correções para as faixas
     for correction in unnecessary_keys_normalized:
 
-        if correction in keys:
-            if filters[columns[correction]] == None:  pass
-            elif filters[columns[correction]] == "":
+        if correction in normalized_keys and "faixa" in correction:
+            
+            if filters[columns[correction]] == None:
                 filters[columns[correction]] = None
-            #Correção para as faixas
             elif float(filters[columns[correction]]) > 1:
-                 filters[columns[correction]] = 1
+                filters[columns[correction]] = 1
             elif float(filters[columns[correction]]) < 0:
-                 filters[columns[correction]] = 0
+                filters[columns[correction]] = 0
             elif float(filters[columns[correction]]) < 1 and float(filters[columns[correction]]) > 0:
-                 filters[columns[correction]] = np.round(filters[columns[correction]], 0)
-        
-        elif correction not in keys:
-            filters[columns[correction]] = None
+                filters[columns[correction]] = np.round(filters[columns[correction]], 0)
 
     # Cria a string para a query
     string = ''
@@ -272,7 +269,7 @@ def put():
     for key in normalized_keys:
     
         if key != "ean":
-            string += f""""{columns[key]}" = "{filters[keys[key]]}","""
+            string += f""""{columns[key]}" = ?,"""
     
     # Remove a ultima vírgula
     string = string[:-1]
@@ -283,11 +280,13 @@ def put():
     # Verifica se o dado já existe
     if sqlm.get_sql(f'SELECT * FROM PRODUCTS WHERE "EAN" = {filters[keys["ean"]]}').empty:
         return {"Erro": "Produto não registrado"}
+    
+    del filters[keys["ean"]]
 
     # Realiza o update
     conn = sqlite3.connect("database\database.db")
     cursor = conn.cursor()
-    cursor.execute(full_string)
+    cursor.execute(full_string, list(filters.values()))
     conn.commit()
 
     return {"Status": "Produto atualizado"}

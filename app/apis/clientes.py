@@ -220,7 +220,7 @@ def put():
     # Verifica se as chaves obrigatórias receberam valor nulo ou vazio
     invalid_values = []
     for key, value in zip(keys, filters.values()):
-        if (value == None or value == "") and key in unnecessary_keys_normalized:
+        if (value == None or value == "") and key not in unnecessary_keys_normalized:
             invalid_values.append(key)
     
     if invalid_values:
@@ -252,43 +252,51 @@ def put():
     if incorrect_values:
         return {"Erro - Valores de tipo incorreto": incorrect_values}
 
+    try: del filters[keys["concatenar"]]
+    except: pass
+
+    try: del filters[keys["concatenar distri"]]
+    except: pass
+
+    # Exclusivo para a coluna "Concatenar"
+    if "cidade" in normalized_keys:
+        filters["Concatenar"] = filters[keys['cidade']] + str(filters[keys['cod cliente']])
+
+    # Exclusivo para a coluna "Concatenar Distri"
+    if any(test in normalized_keys  for test in ["cidade", "estado"]):
+        
+        if "cidade" in normalized_keys and "estado" in normalized_keys:
+            filters["Concatenar Distri"] = filters[keys['cidade']] + filters[keys['estado']]
+        
+        elif "cidade" not in normalized_keys:
+            filters["Concatenar Distri"] = return_data["Cidade"].values[0] + filters[keys['estado']]
+        
+        if "estado" not in normalized_keys:
+            filters["Concatenar Distri"] =  filters[keys['cidade']] + return_data["Estado"].values[0]
+
+    normalized_keys = [unidecode(key.lower())   for key in filters.keys()]
+    keys = {key: value  for key, value in zip(normalized_keys, filters.keys())}
+    
     # Cria a string para a query
     string = ''
     
     for key in normalized_keys:
-    
-        if key != "cod cliente" and "concatenar" not in key:
-            if key == "valor":
-                string += f""""{columns[key]}" = {float(filters[keys[key]])},"""
-            else:
-                string += f""""{columns[key]}" = "{filters[keys[key]]}","""
 
-    # Exclusivo para a coluna "Concatenar"
-    if "cidade" in normalized_keys:
-        string += f""""Concatenar" = "{filters[keys['cidade']]}{filters[keys['cod cliente']]}","""
-
-    # Exclusivo para a coluna "Concatenar Distri"
-    if "cidade" in normalized_keys or "estado" in normalized_keys:
-
-        if "cidade" in normalized_keys and "estado" in normalized_keys:
-            string += f""""Concatenar Distri" = "{filters[keys['cidade']]}{filters[keys['estado']]}","""
-        
-        elif "cidade" not in normalized_keys:
-            string += f""""Concatenar Distri" = "{return_data["Cidade"].values[0]}{filters[keys['estado']]}","""
-        
-        if "estado" not in normalized_keys:
-            string += f""""Concatenar Distri" = "{filters[keys['cidade']]}{return_data["Estado"].values[0]}","""
+        if key != "cod cliente":
+            string += f""""{columns[key]}" = ?,"""
 
     # Remove a ultima vírgula
     string = string[:-1]
 
     # Cria a string completa para realizar a query de update
     full_string = f"""UPDATE CLIENTS SET {string} WHERE "Cód Cliente" = {filters[keys["cod cliente"]]}"""
+    
+    del filters[keys["cod cliente"]]
 
     # Realiza o update
     conn = sqlite3.connect("database\database.db")
     cursor = conn.cursor()
-    cursor.execute(full_string)
+    cursor.execute(full_string, list(filters.values()))
     conn.commit()
 
     return {"Status": "Cliente atualizado"}
